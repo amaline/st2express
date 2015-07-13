@@ -4,6 +4,10 @@ FROM ubuntu:14.04
 # Disable prompts
 ENV DEBIAN_FRONTEND noninteractive
 
+# add certificates
+ADD ./certs /usr/local/share/ca-certificates/
+RUN update-ca-certificates
+
 # Reset policy-rc.d
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 
