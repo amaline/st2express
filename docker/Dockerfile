@@ -4,9 +4,6 @@ FROM ubuntu:14.04
 # Disable prompts
 ENV DEBIAN_FRONTEND noninteractive
 
-# add certificates
-ADD ./certs /usr/local/share/ca-certificates/
-RUN update-ca-certificates
 
 # Reset policy-rc.d
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
@@ -16,7 +13,12 @@ RUN \
   apt-get update && \
     apt-get install -y curl python python-dev python-pip python-virtualenv openssh-server && \
       apt-get install -y python-prettytable python-yaml && \
+        apt-get install -y ca-certificates && \
         rm -rf /var/lib/apt/lists/*
+
+# add certificates
+ADD ./certs /usr/local/share/ca-certificates/
+RUN update-ca-certificates
 
 # Set environment variable to Docker
 ENV CONTAINER DOCKER
