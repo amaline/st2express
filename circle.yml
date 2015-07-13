@@ -4,7 +4,7 @@ machine:
 
 dependencies:
    override:
-      - cd docker; build -t amaline/st2 . 
+      - cd docker; docker build -t amaline/st2 . 
 
 test:
    override:

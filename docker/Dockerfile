@@ -1,4 +1,4 @@
-# Pull base image.
+# Pull base ubuntu image.
 FROM ubuntu:14.04
 
 # Disable prompts
