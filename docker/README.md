@@ -1,5 +1,7 @@
 # st2docker
 
+This repository has been forked from StackStorm for setting up a learning environment.
+
 This repository contains Dockerfile which allows run all the StackStorm
 services in a single docker container.
 
