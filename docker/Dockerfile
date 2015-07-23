@@ -25,13 +25,17 @@ ENV CONTAINER DOCKER
 
 RUN cd /root && curl -sS -k -O https://ops.stackstorm.net/releases/st2/scripts/st2_deploy.sh
 
-RUN bash -c 'chmod +x /root/st2_deploy.sh'
-
-RUN bash -c '/root/st2_deploy.sh stable || exit 2'
+# install docker 1.6
+RUN cd /bin &&  curl -L https://github.com/docker/docker/archive/v1.6.0.tar.gz | gunzip | tar xvf -
 
 ADD . /root/st2/
 
-RUN bash -c 'chmod +x /root/st2/start.sh'
+RUN bash -c 'chmod +x /root/*.sh'
+
+RUN bash -c '/root/st2_deploy.sh stable || exit 2'
+
+
+#RUN bash -c 'chmod +x /root/st2/*.sh'
 
 # auth service
 EXPOSE 9100
