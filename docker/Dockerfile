@@ -19,6 +19,7 @@ RUN \
 # add certificates
 ADD ./certs /usr/local/share/ca-certificates/
 RUN update-ca-certificates
+ENV REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
 
 # Set environment variable to Docker
 ENV CONTAINER DOCKER
