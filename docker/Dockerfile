@@ -31,10 +31,10 @@ RUN cd /bin &&  curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.6.0 
 
 ADD . /root/st2/
 
-RUN bash -c 'chmod +x /root/*.sh'
+RUN bash -c 'chmod +x /root/*.sh /root/st2/*.sh'
 
 RUN bash -c '/root/st2_deploy.sh stable || exit 2'
-RUN bash -c '/root/st2/start.sh packinstall'
+RUN bash -c '/root/st2/start.sh packinstall' && st2ctl stop
 
 
 #RUN bash -c 'chmod +x /root/st2/*.sh'
