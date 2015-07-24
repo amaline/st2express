@@ -33,7 +33,7 @@ ADD . /root/st2/
 
 RUN bash -c 'chmod +x /root/*.sh'
 
-RUN bash -c '/root/st2_deploy.sh stable || exit 2'
+RUN bash -c '/root/st2_deploy.sh stable && st2 run packs.install packs=slack,st2,hubot,google,docker,aws,mistral,trello,twitter repo_url=https://github.com/StackStorm/st2contrib.git || exit 2'
 
 
 #RUN bash -c 'chmod +x /root/st2/*.sh'
