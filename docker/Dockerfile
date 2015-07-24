@@ -26,7 +26,7 @@ ENV CONTAINER DOCKER
 RUN cd /root && curl -sS -k -O https://ops.stackstorm.net/releases/st2/scripts/st2_deploy.sh
 
 # install docker 1.6
-RUN cd /bin &&  curl -L https://github.com/docker/docker/archive/v1.6.0.tar.gz | gunzip | tar xvf -
+RUN cd /bin &&  curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.6.0 > docker
 
 ADD . /root/st2/
 
