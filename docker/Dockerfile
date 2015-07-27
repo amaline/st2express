@@ -14,6 +14,7 @@ RUN \
     apt-get install -y curl python python-dev python-pip python-virtualenv openssh-server && \
       apt-get install -y python-prettytable python-yaml && \
         apt-get install -y ca-certificates && \
+           apt-get install -y groff && \
         rm -rf /var/lib/apt/lists/*
 
 # add certificates
