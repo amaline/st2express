@@ -25,6 +25,8 @@ ENV REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
 ENV CONTAINER DOCKER
 
 RUN cd /root && curl -sS -k -O https://ops.stackstorm.net/releases/st2/scripts/st2_deploy.sh
+
+# install amazon aws command line client
 RUN pip install awscli
 
 # install docker 1.6
@@ -36,6 +38,7 @@ RUN bash -c 'chmod +x /root/*.sh /root/st2/*.sh'
 
 RUN bash -c '/root/st2_deploy.sh stable || exit 2'
 RUN bash -c '/root/st2/start.sh packinstall' && st2ctl stop
+RUN bash -c '/root/st2/chatops.sh'
 
 
 #RUN bash -c 'chmod +x /root/st2/*.sh'
