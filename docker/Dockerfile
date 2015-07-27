@@ -25,6 +25,7 @@ ENV REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
 ENV CONTAINER DOCKER
 
 RUN cd /root && curl -sS -k -O https://ops.stackstorm.net/releases/st2/scripts/st2_deploy.sh
+RUN pip install awscli
 
 # install docker 1.6
 RUN cd /bin &&  curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.6.0 > docker
