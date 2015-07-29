@@ -27,6 +27,10 @@ ENV REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
 # Set environment variable to Docker
 ENV CONTAINER DOCKER
 
+# bad way to get docker host; need service discovery
+ENV DOCKER_HOST tcp://vw1amaline2-dev.prod.fdic.gov:2376 
+ENV DOCKER_TLS_VERIFY 1
+
 RUN cd /root && curl -sS -k -O https://ops.stackstorm.net/releases/st2/scripts/st2_deploy.sh
 
 # install amazon aws command line client
