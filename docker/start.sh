@@ -48,4 +48,6 @@ fi
 if [ "x$1" == "xpackinstall" ]; then
     echo "installing my packs"
     st2 run packs.install packs=slack,st2,hubot,google,docker,aws,mistral,trello,twitter repo_url=https://github.com/StackStorm/st2contrib.git
+else
+    /root/st2/dockerclientsetup.sh
 fi
