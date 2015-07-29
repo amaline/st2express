@@ -20,6 +20,8 @@ RUN \
 # add certificates
 ADD ./certs /usr/local/share/ca-certificates/
 RUN update-ca-certificates
+
+# env var needed for python to pick up certificates
 ENV REQUESTS_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
 
 # Set environment variable to Docker
@@ -31,7 +33,7 @@ RUN cd /root && curl -sS -k -O https://ops.stackstorm.net/releases/st2/scripts/s
 RUN pip install awscli
 
 # install docker 1.6
-RUN cd /bin &&  curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.6.0 > docker
+RUN cd /bin &&  curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.6.0 > docker && chmod u+x docker
 
 ADD . /root/st2/
 
@@ -39,10 +41,6 @@ RUN bash -c 'chmod +x /root/*.sh /root/st2/*.sh'
 
 RUN bash -c '/root/st2_deploy.sh stable || exit 2'
 RUN bash -c '/root/st2/start.sh packinstall' && st2ctl stop
-RUN bash -c '/root/st2/chatops.sh'
-
-
-#RUN bash -c 'chmod +x /root/st2/*.sh'
 
 # auth service
 EXPOSE 9100
